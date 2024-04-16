@@ -1,0 +1,29 @@
+* {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .h-font {
+    font-family: 'Merienda', cursive;
+  }
+
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+
+  .custom-bg {
+    background-color: #8DD3BB;
+    border: 1px solid #8DD3BB;
+  }
+
+  .custom-bg:hover {
+    background-color: #279e8c;
+    border-color:#279e8c;
+  }
