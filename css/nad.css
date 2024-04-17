@@ -1,3 +1,8 @@
+:root{
+  --teal:#8DD3BB;
+  --teal_hover:#279e8c;
+}
+
 * {
     font-family: 'Poppins', sans-serif;
   }
@@ -19,11 +24,17 @@
   }
 
   .custom-bg {
-    background-color: #8DD3BB;
-    border: 1px solid #8DD3BB;
+    background-color:  var(--teal);
+    border: 1px solid  var(--teal);
   }
 
   .custom-bg:hover {
-    background-color: #279e8c;
-    border-color:#279e8c;
+    background-color: var(--teal_hover) ;
+    border-color: var(--teal_hover);
+  }
+
+  .h-line{
+    width: 150px;
+    margin: 0 auto;
+    height: 1.7px;
   }
