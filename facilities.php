@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <?php require('inc/links.php')?>
+
   
   
   <title>Metama Hotels - facilities</title>
@@ -26,7 +27,7 @@
 
   <div class="my-5 px-4">
     <h2 class="fw-bold h-font text-center">OUR FACILITIES</h2>
-    <hr>
+    <div class="h-line bg-dark"></div>
     <p class="text-center mt-3">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. 
       Ipsa itaque aperiam,<br> id ipsum  numquam consectetur. 
