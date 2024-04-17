@@ -426,6 +426,92 @@
     </div>
   </div>
 
+  <!-- reviews -->
+  <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">REVIEWS</h2>
+  <div class="container mt-5">
+    <div class="swiper swiper-reviews">
+      <div class="swiper-wrapper mb-5">
+
+        <div class="swiper-slide bg-white p-4">
+          <div class="profile d-flex align-items-center mb-3">
+            <img src="images/facilities/radio.svg" width="30px" />
+            <h6 class="m-0 ms-2">Random user1</h6>
+          </div>
+          <p>Ea labore consectetur occaecat exercitation. 
+            Qui dolore eiusmod dolor laborum fugiat enim enim enim ullamco ut Lorem ea qui. 
+            Incididunt aliqua tempor do qui occaecat laborum aliqua amet culpa sunt do ad quis velit. 
+            Aliqua ut sunt occaecat fugiat cupidatat fugiat Lorem aute ad aute dolore labore elit.
+          </p>
+          <div class="rating">
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-half text-warning"></i>
+            <i class="bi bi-star text-warning"></i>
+            <i class="bi bi-star text-warning"></i>
+          </div>
+        </div>
+
+        <div class="swiper-slide bg-white p-4">
+          <div class="profile d-flex align-items-center mb-3">
+            <img src="images/facilities/radio.svg" width="30px" />
+            <h6 class="m-0 ms-2">Random user2</h6>
+          </div>
+          <p>Ea labore consectetur occaecat exercitation. 
+            Qui dolore eiusmod dolor laborum fugiat enim enim enim ullamco ut Lorem ea qui. 
+            Incididunt aliqua tempor do qui occaecat laborum aliqua amet culpa sunt do ad quis velit. 
+            Aliqua ut sunt occaecat fugiat cupidatat fugiat Lorem aute ad aute dolore labore elit.
+          </p>
+          <div class="rating">
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-half text-warning"></i>
+          </div>
+        </div>
+
+        <div class="swiper-slide bg-white p-4">
+          <div class="profile d-flex align-items-center mb-3">
+            <img src="images/facilities/radio.svg" width="30px" />
+            <h6 class="m-0 ms-2">Random user3</h6>
+          </div>
+          <p>Ea labore consectetur occaecat exercitation. 
+            Qui dolore eiusmod dolor laborum fugiat enim enim enim ullamco ut Lorem ea qui. 
+            Incididunt aliqua tempor do qui occaecat laborum aliqua amet culpa sunt do ad quis velit. 
+            Aliqua ut sunt occaecat fugiat cupidatat fugiat Lorem aute ad aute dolore labore elit.
+          </p>
+          <div class="rating">
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
+          </div>
+        </div>
+
+        <div class="swiper-slide bg-white p-4">
+          <div class="profile d-flex align-items-center mb-3">
+            <img src="images/facilities/radio.svg" width="30px" />
+            <h6 class="m-0 ms-2">Random user4</h6>
+          </div>
+          <p>Ea labore consectetur occaecat exercitation. 
+            Qui dolore eiusmod dolor laborum fugiat enim enim enim ullamco ut Lorem ea qui. 
+            Incididunt aliqua tempor do qui occaecat laborum aliqua amet culpa sunt do ad quis velit. 
+            Aliqua ut sunt occaecat fugiat cupidatat fugiat Lorem aute ad aute dolore labore elit.
+          </p>
+          <div class="rating">
+            <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-half text-warning"></i>
+            <i class="bi bi-star text-warning"></i>
+            <i class="bi bi-star text-warning"></i>
+            <i class="bi bi-star text-warning"></i>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+
   <br><br><br>
   <br><br><br>
 
@@ -440,6 +526,38 @@
       autoplay: {
         delay: 3500,
         disableOnInteraction: false,
+      }
+    });
+    var swiper = new Swiper(".swiper-reviews", {
+      effect: "coverflow",
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: "auto",
+      slidesPerView:"3",
+      loop:true,
+      coverflowEffect: {
+        rotate: 50,
+        stretch: 0,
+        depth: 100,
+        modifier: 1,
+        slideShadows: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+      },
+      breakpoints: {
+        320:{
+          slidesPerView:1,
+        },
+        640:{
+          slidesPerView:1,
+        },
+        768:{
+          slidesPerView:2,
+        },
+        1024:{
+          slidesPerView:3,
+        },
       }
     });
   </script>
