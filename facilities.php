@@ -50,8 +50,8 @@
       <div class="col-lg-4 col-md-6 mb-5 px-4">
         <div class="bg-white rounded shadow p-4 border-top border-4 border-dark pop">
           <div class="d-flex align-items-center mb-2">
-          <img src="images/facilities/wifi.svg" width="40px">
-          <h5 class="m-0 ms-3">WIFI</h5>
+          <img src="images/facilities/AC.svg" width="40px">
+          <h5 class="m-0 ms-3">AIR CONDITION</h5>
           </div>  
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. 
@@ -62,8 +62,8 @@
       <div class="col-lg-4 col-md-6 mb-5 px-4">
         <div class="bg-white rounded shadow p-4 border-top border-4 border-dark pop">
           <div class="d-flex align-items-center mb-2">
-          <img src="images/facilities/wifi.svg" width="40px">
-          <h5 class="m-0 ms-3">WIFI</h5>
+          <img src="images/facilities/massage.svg" width="40px">
+          <h5 class="m-0 ms-3">MASSAGE</h5>
           </div>  
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. 
@@ -74,8 +74,8 @@
       <div class="col-lg-4 col-md-6 mb-5 px-4">
         <div class="bg-white rounded shadow p-4 border-top border-4 border-dark pop">
           <div class="d-flex align-items-center mb-2">
-          <img src="images/facilities/wifi.svg" width="40px">
-          <h5 class="m-0 ms-3">WIFI</h5>
+          <img src="images/facilities/roomheater.svg" width="40px">
+          <h5 class="m-0 ms-3">ROOM HEATER</h5>
           </div>  
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. 
@@ -86,8 +86,8 @@
       <div class="col-lg-4 col-md-6 mb-5 px-4">
         <div class="bg-white rounded shadow p-4 border-top border-4 border-dark pop">
           <div class="d-flex align-items-center mb-2">
-          <img src="images/facilities/wifi.svg" width="40px">
-          <h5 class="m-0 ms-3">WIFI</h5>
+          <img src="images/facilities/television.svg" width="40px">
+          <h5 class="m-0 ms-3">TELEVISION</h5>
           </div>  
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. 
@@ -98,8 +98,8 @@
       <div class="col-lg-4 col-md-6 mb-5 px-4">
         <div class="bg-white rounded shadow p-4 border-top border-4 border-dark pop">
           <div class="d-flex align-items-center mb-2">
-          <img src="images/facilities/wifi.svg" width="40px">
-          <h5 class="m-0 ms-3">WIFI</h5>
+          <img src="images/facilities/radio.svg" width="40px">
+          <h5 class="m-0 ms-3">RADIO</h5>
           </div>  
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. 

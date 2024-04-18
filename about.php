@@ -46,23 +46,7 @@
         </p>
       </div>
       <div class="col-lg-5 col-md-5 mb-4 order-lg-2 order-md-2 order-1">
-        <img src="images/about/about1.png" class="w-100">
-      </div>
-      <div class="col-lg-6 col-md-5 mb-4 order-lg-4 order-md-4 order-4">
-        <h3 class="mb-3">Lorem ipsum dolor sit</h3>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-          Harum, at soluta vero itaque nesciunt, omnis, 
-          numquam fuga unde quidem inventore aspernatur nulla enim dolor voluptatum modi neque eos. 
-          Architecto ducimus animi ipsam.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-          Harum, at soluta vero itaque nesciunt, omnis, 
-          numquam fuga unde quidem inventore aspernatur nulla enim dolor voluptatum modi neque eos. 
-          Architecto ducimus animi ipsam.
-        </p>
-      </div>
-      <div class="col-lg-5 col-md-5 mb-4 order-lg-3 order-md-3 order-3">
-        <img src="images/about/about2.png" class="w-100">
+        <img src="images/about/about.jpg" class="w-100">
       </div>
     </div>
   </div>
