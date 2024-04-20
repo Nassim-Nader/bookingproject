@@ -74,7 +74,7 @@
       <div class="col-lg-4 col-md-6 mb-5 px-4">
         <div class="bg-white rounded shadow p-4 border-top border-4 border-dark pop">
           <div class="d-flex align-items-center mb-2">
-          <img src="images/facilities/roomheater.svg" width="40px">
+          <img src="images/facilities/radio.svg" width="40px">
           <h5 class="m-0 ms-3">ROOM HEATER</h5>
           </div>  
           <p>
@@ -98,8 +98,8 @@
       <div class="col-lg-4 col-md-6 mb-5 px-4">
         <div class="bg-white rounded shadow p-4 border-top border-4 border-dark pop">
           <div class="d-flex align-items-center mb-2">
-          <img src="images/facilities/radio.svg" width="40px">
-          <h5 class="m-0 ms-3">RADIO</h5>
+          <img src="images/facilities/roomheater.svg" width="40px">
+          <h5 class="m-0 ms-3">sauna room</h5>
           </div>  
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. 
