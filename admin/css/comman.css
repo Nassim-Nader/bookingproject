@@ -44,3 +44,18 @@
       top: 25px;
       right: 25px;
     }
+
+    #dashboard-menu{
+      position: fixed;
+      height: 100%;
+    }
+
+    @media screen and (max-width:992px) {
+      #dashboard-menu{
+        position: auto;
+        height: 100%;
+      }
+      #main-conten{
+        margin-top: 60px;
+      }
+    }
