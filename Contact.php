@@ -30,7 +30,7 @@
     <div class="row">
       <div class="col-lg-6 col-md-6 mb-5 px-4">
         <div class="bg-white rounded shadow p-4">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13764.72045536767!2d-9.5479416!3d30.4026313!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xdb3c9eea4a7b4b7%3A0xb1c9be4d7c59fe67!2sMETAMA!5e0!3m2!1sen!2sma!4v1713458995709!5m2!1sen!2sma" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <iframe class="w-100 rounded mb-4" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13764.72045536767!2d-9.5479416!3d30.4026313!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xdb3c9eea4a7b4b7%3A0xb1c9be4d7c59fe67!2sMETAMA!5e0!3m2!1sen!2sma!4v1713458995709!5m2!1sen!2sma" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           
             
           <h5>Address</h5>

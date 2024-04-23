@@ -96,7 +96,6 @@
   </div>
   <!-- Our Rooms -->
   <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">OUR ROOMS</h2>
-
   <div class="container">
     <div class="row">
 
@@ -325,7 +324,7 @@
 
         <div class="swiper-slide bg-white p-4">
           <div class="profile d-flex align-items-center mb-3">
-            <img src="images/facilities/radio.svg" width="30px" />
+            <img src="images/facilities/roomheater.svg" width="30px" />
             <h6 class="m-0 ms-2">Random user1</h6>
           </div>
           <p>Ea labore consectetur occaecat exercitation. 
@@ -344,7 +343,7 @@
 
         <div class="swiper-slide bg-white p-4">
           <div class="profile d-flex align-items-center mb-3">
-            <img src="images/facilities/radio.svg" width="30px" />
+            <img src="images/facilities/roomheater.svg" width="30px" />
             <h6 class="m-0 ms-2">Random user2</h6>
           </div>
           <p>Ea labore consectetur occaecat exercitation. 
@@ -363,7 +362,7 @@
 
         <div class="swiper-slide bg-white p-4">
           <div class="profile d-flex align-items-center mb-3">
-            <img src="images/facilities/radio.svg" width="30px" />
+            <img src="images/facilities/roomheater.svg" width="30px" />
             <h6 class="m-0 ms-2">Random user3</h6>
           </div>
           <p>Ea labore consectetur occaecat exercitation. 
@@ -382,7 +381,7 @@
 
         <div class="swiper-slide bg-white p-4">
           <div class="profile d-flex align-items-center mb-3">
-            <img src="images/facilities/radio.svg" width="30px" />
+            <img src="images/facilities/roomheater.svg" width="30px" />
             <h6 class="m-0 ms-2">Random user4</h6>
           </div>
           <p>Ea labore consectetur occaecat exercitation. 
