@@ -53,8 +53,8 @@
 
     @media screen and (max-width:992px) {
       #dashboard-menu{
-        position: auto;
-        height: 100%;
+        height: auto;
+        width: 100%;
       }
       #main-conten{
         margin-top: 60px;
