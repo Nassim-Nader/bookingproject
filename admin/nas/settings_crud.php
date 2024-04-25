@@ -103,7 +103,7 @@ if (isset($_POST['del_member'])) {
 
     if(deleteImage($img['picture'],ABOUT_FOLDER)){
         $q = "DELETE FROM `team_details` WHERE `id`=?";
-        $res = delete($q,$values,'i');
+        $res = deletes($q,$values,'i');
         echo $res;
     }
     else{

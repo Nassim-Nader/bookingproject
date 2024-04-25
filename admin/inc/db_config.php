@@ -93,7 +93,7 @@
         }
     } 
 
-    function delete($sql, $values, $datatypes)
+    function deletes($sql, $values, $datatypes)
     {
         $con = $GLOBALS['con'];
         if ($stmt = mysqli_prepare($con, $sql)) 
