@@ -185,7 +185,7 @@ adminLogin();
                                                     <div class="input-group mb-3">
                                                         <span class="input-group-text"><i
                                                                 class="bi bi-telephone-fill"></i></span>
-                                                        <input name="pn1" id="pn1_inp" type="text"
+                                                        <input name="pn1" id="pn1_inp" type="number"
                                                             class="form-control shadow-none" required>
                                                     </div>
                                                 </div>
@@ -195,7 +195,7 @@ adminLogin();
                                                     <div class="input-group mb-3">
                                                         <span class="input-group-text"><i
                                                                 class="bi bi-telephone-fill"></i></span>
-                                                        <input name="pn2" id="pn2_inp" type="text"
+                                                        <input name="pn2" id="pn2_inp" type="number"
                                                             class="form-control shadow-none">
                                                     </div>
                                                 </div>
