@@ -82,7 +82,7 @@ if (isset($_POST['get_members'])) {
             <div class="card bg-dark text-white">
                 <img src="$path$row[picture]" class="card-img">
                 <div class="card-img-overlay text-end">
-                    <button class="btn btn-danger btn-sm shadow-none" type="button" >
+                    <button onclick="del_member($row[id])" class="btn btn-danger btn-sm shadow-none"  type="button" >
                         <i class="bi bi-trash3"></i>Delete
                     </button>
                 </div>
@@ -90,6 +90,24 @@ if (isset($_POST['get_members'])) {
             </div>
         </div>
         data;
+    }
+}
+
+if (isset($_POST['del_member'])) {
+    $frm_data = filteration($_POST);
+    $values = [$frm_data['del_member']];
+
+    $pre_q="SELECT * FROM `team_details` WHERE `id`=?";
+    $res = select($pre_q, $values,'i');
+    $img = mysqli_fetch_assoc($res);
+
+    if(deleteImage($img['picture'],ABOUT_FOLDER)){
+        $q = "DELETE FROM `team_details` WHERE `id`=?";
+        $res = delete($q,$values,'i');
+        echo $res;
+    }
+    else{
+        echo 0;
     }
 }
 ?>

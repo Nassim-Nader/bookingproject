@@ -285,7 +285,7 @@ adminLogin();
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" onclick="" class="btn text-secondary shadow-none"
+                                    <button type="button" onclick="member_name.value='',member_picture.value=''" class="btn text-secondary shadow-none"
                                         data-bs-dismiss="modal">
                                         Cancel
                                     </button>
@@ -495,7 +495,7 @@ adminLogin();
                     alert('error', 'Only JPG and PNG images are allowed!');
                     get_general();
                 }
-                else if (this.responseText == 'inv_img') {
+                else if (this.responseText == 'inv_size') {
                     alert('error', 'image is too large it surpass 3 mb');
                 }
                 else if (this.responseText == 'upd_failed') {
@@ -505,7 +505,7 @@ adminLogin();
                     alert('success', 'The New Member Has been Added successfully');
                     member_name_inp.value = '';
                     member_picture_inp.value = '';
-
+                    get_members();
                 }
             }
 
@@ -513,8 +513,7 @@ adminLogin();
         }
 
 
-        function get_members()
-        {
+        function get_members() {
             let xhr = new XMLHttpRequest();
             xhr.open("POST", "nas/settings_crud.php", true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -524,6 +523,25 @@ adminLogin();
             }
 
             xhr.send('get_members');
+        }
+
+
+        function del_member(val) {
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "nas/settings_crud.php", true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            xhr.onload = function () {
+                if (this.responseText == 1) {
+                    alert('success', 'This Member is Deleted!');
+                    get_members();
+                }
+                else {
+                    alert('error', 'Server Down try again Later!');
+                }
+            }
+
+            xhr.send('del_member=' + val);
         }
 
 
