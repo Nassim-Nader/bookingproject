@@ -17,10 +17,9 @@ if (isset($_POST['add_feature'])) {
 
 if (isset($_POST['get_features'])) {
     $res = selectAll('features');
-    $i=1;
+    $i = 1;
 
-    while ($row = mysqli_fetch_assoc($res))
-    {
+    while ($row = mysqli_fetch_assoc($res)) {
         echo <<<data
         <tr>
             <td>$i</td>
@@ -41,7 +40,7 @@ if (isset($_POST['del_features'])) {
     $values = [$frm_data['del_features']];
 
     $q = "DELETE FROM `features` WHERE `id`=?";
-    $res = deletes($q,$values,'i');
+    $res = deletes($q, $values, 'i');
     echo $res;
 }
 
@@ -57,7 +56,7 @@ if (isset($_POST['add_facility'])) {
         echo $img_r;
     } else {
         $q = "INSERT INTO `facilities`(`icon`, `name`, `description`) VALUES (?,?,?)";
-        $values = [$img_r,$frm_data['name'], $frm_data['description']];
+        $values = [$img_r, $frm_data['name'], $frm_data['description']];
         $res = insert($q, $values, 'sss');
         echo $res;
     }
@@ -65,11 +64,10 @@ if (isset($_POST['add_facility'])) {
 
 if (isset($_POST['get_facilities'])) {
     $res = selectAll('facilities');
-    $i=1;
-    $path= FACILITIES_IMG_PATH;
+    $i = 1;
+    $path = FACILITIES_IMG_PATH;
 
-    while ($row = mysqli_fetch_assoc($res))
-    {
+    while ($row = mysqli_fetch_assoc($res)) {
         echo <<<data
         <tr class="align-middle" >
             <td>$i</td>
@@ -91,9 +89,19 @@ if (isset($_POST['del_facility'])) {
     $frm_data = filteration($_POST);
     $values = [$frm_data['del_facility']];
 
-    $q = "DELETE FROM `facilities` WHERE `id`=?";
-    $res = deletes($q,$values,'i');
-    echo $res;
+    $pre_q = "SELECT * FROM `facilities` WHERE `id`=?";
+    $res = select($pre_q, $values, 'i');
+    $img = mysqli_fetch_assoc($res);
+
+    if (deleteImage($img['icon'], FACILITIES_FOLDER)) {
+        $q = "DELETE FROM `facilities` WHERE `id`=?";
+        $res = deletes($q, $values, 'i');
+        echo $res;
+    } else {
+        echo 0;
+    }
+
+
 }
 
 
