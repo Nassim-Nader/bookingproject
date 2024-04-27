@@ -64,7 +64,7 @@ if (isset($_GET['del'])) {
     <div class="container-fluid" id="main-content">
         <div class="row">
             <div class="col-lg-10 ms-auto p-4 overflow-hidden">
-                <h3 class="mb-4">USER QUERIES</h3>
+                <h3 class="mb-4">FEATURES & FACILITIES</h3>
 
 
                 <div class="card border-0 shadow mb-4">
@@ -80,7 +80,7 @@ if (isset($_GET['del'])) {
 
                         <div class="table-responsive-md" style="height: 350px; overflow-y: scroll;">
                             <table class="table table-hover">
-                                <thead class="sticky-top">
+                                <thead>
                                     <tr class="bg-dark text-light">
                                         <th scope="col">#</th>
                                         <th scope="col">Name</th>
@@ -88,31 +88,36 @@ if (isset($_GET['del'])) {
                                     </tr>
                                 </thead>
                                 <tbody id="features-data">
-                                    <!-- <?php
-                                    $q = "SELECT * FROM `user_queries` ORDER BY `id` DESC";
-                                    $data = mysqli_query($con, $q);
-                                    $i = 1;
+                                </tbody>
+                            </table>
+                        </div>
 
-                                    while ($row = mysqli_fetch_assoc($data)) {
-                                        $seen = '';
-                                        if ($row['seen'] != 1) {
-                                            $seen = "<a href='?seen=$row[id]' class='btn btn-sm rounded-pill btn-primary' >Mark as read</a> <br>";
-                                        }
-                                        $seen .= "<a href='?del=$row[id]' class='btn btn-sm rounded-pill btn-danger mt-2' >Delete</a>";
-                                        echo <<<query
-                                                <tr>
-                                                    <th>$i</th>
-                                                    <td>$row[name]</td>
-                                                    <td>$row[email]</td>
-                                                    <td>$row[subject]</td>
-                                                    <td>$row[message]</td>
-                                                    <td>$row[date]</td>
-                                                    <td>$seen</td>
-                                                </tr>
-                                            query;
-                                        $i++;
-                                    }
-                                    ?> -->
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow mb-4">
+                    <div class="card-body">
+
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <h5 class="card-title m-0">Facilities</h5>
+                            <button type="button" class="btn btn-dark shadow-none btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#facility-s">
+                                <i class="bi bi-person-fill-add"></i>Add
+                            </button>
+                        </div>
+
+                        <div class="table-responsive-md" style="height: 350px; overflow-y: scroll;">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr class="bg-dark text-light">
+                                        <th scope="col">#</th>
+                                        <th scope="col">Icon</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col" width="40%" >Description</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="facilities-data">
                                 </tbody>
                             </table>
                         </div>
@@ -121,12 +126,11 @@ if (isset($_GET['del'])) {
                 </div>
 
 
-
             </div>
         </div>
     </div>
 
-    <!-- Modal for Feature -->
+    <!-- Modal for Features -->
     <div class="modal fade" id="feature-s" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -154,9 +158,47 @@ if (isset($_GET['del'])) {
         </div>
     </div>
 
+    <!-- Modal for Facilities -->
+    <div class="modal fade" id="facility-s" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form id="facility_s_form">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Facility </h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Name</label>
+                            <input type="text" name="facility_name" class="form-control shadow-none" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Icon</label>
+                            <input type="file" name="facility_icon" id="member_picture_inp" accept=".svg"
+                                class="form-control shadow-none" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea name="facility_desc" class="form-control shadow-none" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn text-secondary shadow-none" data-bs-dismiss="modal">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn custom-bg text-white shadow-none">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <?php require ('inc/scripts.php') ?>
     <script>
         let feature_s_form = document.getElementById('feature_s_form');
+        let facility_s_form = document.getElementById('facility_s_form');
 
         feature_s_form.addEventListener('submit', function (e) {
             e.preventDefault();
@@ -206,7 +248,6 @@ if (isset($_GET['del'])) {
             xhr.send('get_features');
         }
 
-
         function del_features(val) {
             let xhr = new XMLHttpRequest();
             xhr.open("POST", "nas/features_facilities.php", true);
@@ -217,8 +258,7 @@ if (isset($_GET['del'])) {
                     alert('success', 'This Feature is Deleted!');
                     get_features();
                 }
-                else if (this.responseText == 'room_added')
-                {
+                else if (this.responseText == 'room_added') {
                     alert('error', 'Feature is added in room!');
                 }
                 else {
@@ -230,8 +270,85 @@ if (isset($_GET['del'])) {
         }
 
 
+        facility_s_form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            add_facility();
+        });
+
+        function add_facility() {
+            let data = new FormData();
+            data.append('name', facility_s_form.elements['facility_name'].value);
+            data.append('icon', facility_s_form.elements['facility_icon'].files[0]);
+            data.append('description', facility_s_form.elements['facility_desc'].value);
+            data.append('add_facility', '');
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "nas/features_facilities.php", true);
+
+            xhr.onload = function () {
+                console.log(this.responseText);
+
+                var myModal = document.getElementById('facility-s');
+                var modal = bootstrap.Modal.getInstance(myModal);
+                modal.hide();
+
+                if (this.responseText == 'inv_img') {
+                    alert('error', 'Only svg images are allowed!');
+                    get_general();
+                }
+                else if (this.responseText == 'inv_size') {
+                    alert('error', 'image is too large it surpass 2 mb');
+                }
+                else if (this.responseText == 'upd_failed') {
+                    alert('error', 'image upload failed.Server Down!');
+                }
+                else {
+                    alert('success', 'The New Facility Has been Added successfully');
+                    facility_s_form.reset();
+                    get_facilities();
+                }
+            }
+
+            xhr.send(data);
+        }
+
+        function get_facilities() {
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "nas/features_facilities.php", true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            xhr.onload = function () {
+                document.getElementById('facilities-data').innerHTML = this.responseText;
+            }
+
+            xhr.send('get_facilities');
+        }
+
+        function del_facility(val) {
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "nas/features_facilities.php", true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            xhr.onload = function () {
+                if (this.responseText == 1) {
+                    alert('success', 'This Facility is Deleted!');
+                    get_facilities();
+                }
+                else if (this.responseText == 'room_added') {
+                    alert('error', 'Facility is added in room!');
+                }
+                else {
+                    alert('error', 'Server Down try again Later!');
+                }
+            }
+
+            xhr.send('del_facility=' + val);
+        }
+
+
         window.onload = function () {
             get_features();
+            get_facilities();
         }
     </script>
 </body>

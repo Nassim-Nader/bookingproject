@@ -187,7 +187,6 @@ function add_member() {
 
         if (this.responseText == 'inv_img') {
             alert('error', 'Only JPG and PNG images are allowed!');
-            get_general();
         }
         else if (this.responseText == 'inv_size') {
             alert('error', 'image is too large it surpass 3 mb');
