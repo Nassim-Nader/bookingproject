@@ -28,6 +28,7 @@ function send_mail($uemail, $name, $token)
         $sendgrid->send($email);
         return 1;
     } catch (Exception $e) {
+        echo 'Caught exception: ' . $e->getMessage() . "\n";
         return 0;
     }
 }
