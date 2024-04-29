@@ -1,15 +1,13 @@
 <?php
 require ('../admin/inc/db_config.php');
 require ('../admin/inc/essentials.php');
-require ('../inc/sendgrid/sendgrid-php.php');
+require ('../inc/sendgrid-php/sendgrid-php.php');
 
-
-//API KEY IS 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
 
 
 function send_mail($uemail, $name, $token)
 {
-    $email = new \SendGrid\Mail\Mail(); 
+    $email = new \SendGrid\Mail\Mail();
     $email->setFrom("nassim.nader@e-polytechnique.ma", "nassim");
     $email->setSubject("Account Verification Link");
 
@@ -19,7 +17,7 @@ function send_mail($uemail, $name, $token)
         "text/html",
         "
             Click the link to confirm your email: <br>
-            <a href='".SITE_URL."email_confirm.php?email=$uemail&token=$token"."'>
+            <a href='" . SITE_URL . "email_confirm.php?email=$uemail&token=$token" . "'>
                 CLICK ME
             </a>
         "
@@ -74,7 +72,7 @@ if (isset($_POST['register'])) {
 
     $token = bin2hex(random_bytes(16));
 
-    if (!send_mail($data['email'],$data['name'],$token)){
+    if (!send_mail($data['email'], $data['name'], $token)) {
         echo 'mail_failed';
         exit;
     }

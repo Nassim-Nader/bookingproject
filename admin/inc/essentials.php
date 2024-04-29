@@ -9,7 +9,7 @@ define('ROOMS_IMG_PATH', SITE_URL . 'images/rooms/');
 
 
 //backend upload process needs this data
-define('UPLOAD_IMAGE_PATH', $_SERVER['DOCUMENT_ROOT'] .'/bookingproject/images/');
+define('UPLOAD_IMAGE_PATH', $_SERVER['DOCUMENT_ROOT'] . '/bookingproject/images/');
 define('ABOUT_FOLDER', 'about/');
 define('CAROUSEL_FOLDER', 'carousel/');
 define('FACILITIES_FOLDER', 'facilities/');
@@ -18,8 +18,7 @@ define('USERS_FOLDER', 'users/');
 
 //sendgrid api key
 
-define('SENDGRID_API_KEY',"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
-");
+define('SENDGRID_API_KEY', "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");
 
 
 function adminLogin()
@@ -80,7 +79,7 @@ function uploadImage($image, $folder)
 
 function deleteImage($image, $folder)
 {
-    if (unlink(UPLOAD_IMAGE_PATH.$folder.$image)) {
+    if (unlink(UPLOAD_IMAGE_PATH . $folder . $image)) {
         return true;
     } else {
         return false;
@@ -117,25 +116,22 @@ function uploadUserImage($image)
 
     if (!in_array($img_mime, $valid_mime)) {
         return 'inv_img'; //invalid image mime or format
-    }
-    else {
+    } else {
         $ext = pathinfo($image['name'], PATHINFO_EXTENSION);
         $rname = 'IMG_' . random_int(11111, 99999) . ".jpeg";
 
-        $img_path = UPLOAD_IMAGE_PATH.USERS_FOLDER.$rname;
+        $img_path = UPLOAD_IMAGE_PATH . USERS_FOLDER . $rname;
 
-        if($ext == 'png' || $ext == 'PNG') {
+        if ($ext == 'png' || $ext == 'PNG') {
             $img = imagecreatefrompng($image['tmp_name']);
-        }
-        else if ($ext == 'webp' || $ext == 'WEBP') {
+        } else if ($ext == 'webp' || $ext == 'WEBP') {
             $img = imagecreatefromwebp($image['tmp_name']);
-        }
-        else {
-            $img = imagecreatefromjpeg($image['tmp_name']); 
+        } else {
+            $img = imagecreatefromjpeg($image['tmp_name']);
         }
 
 
-        if (imagejpeg($img, $img_path,75)) {
+        if (imagejpeg($img, $img_path, 75)) {
             return $rname;
         } else {
             return 'upd_failed';
