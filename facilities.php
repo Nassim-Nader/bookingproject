@@ -8,7 +8,7 @@
 
 
 
-  <title>Metama Hotels - facilities</title>
+  <title><?php echo $settings_r['site_title'] ?> - facilities</title>
 
   <style>
     .pop:hover {

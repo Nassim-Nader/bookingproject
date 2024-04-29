@@ -19,7 +19,7 @@
       }
     }
   </style>
-  <title>Metama Hotels</title>
+  <title><?php echo $settings_r['site_title'] ?> - Home</title>
 </head>
 
 <body class="bg-light">

@@ -2,10 +2,10 @@
 <div class="container-fluid bg-white mt-5">
   <div class="row">
     <div class="col-lg-4">
-      <h3 class="h-font fw-bold fs-3 mb-2">Metama</h3>
-      <p>Eiusmod non in Lorem nisi do ea ad sunt amet quis consectetur minim adipisicing.
-        Ut eu officia deserunt occaecat voluptate eiusmod sit aliqua proident ad.
-        Aliquip incididunt reprehenderit aliquip consequat duis.</p>
+      <h3 class="h-font fw-bold fs-3 mb-2"><?php echo $settings_r['site_title'] ?></h3>
+      <p>
+        <?php echo $settings_r['site_about'] ?>
+      </p>
     </div>
     <div class="col-lg-4">
       <h5 class="mb-3">Links</h5>

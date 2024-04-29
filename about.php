@@ -12,7 +12,7 @@
     }
   </style>
   
-  <title>Metama Hotels - About</title>
+  <title><?php echo $settings_r['site_title'] ?> - About</title>
 
   
 </head>

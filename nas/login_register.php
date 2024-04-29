@@ -17,7 +17,7 @@ function send_mail($uemail, $name, $token)
         "text/html",
         "
             Click the link to confirm your email: <br>
-            <a href='" . SITE_URL . "email_confirm.php?email=$uemail&token=$token" . "'>
+            <a href='" . SITE_URL . "email_confirm.php?email_confirmation&email=$uemail&token=$token" . "'>
                 CLICK ME
             </a>
         "
@@ -47,7 +47,7 @@ if (isset($_POST['register'])) {
     // check user exists or not
 
     $u_exist = select(
-        "SELECT * FROM `user_cred` WHERE `email` = ? AND `phonenum`=? Limit 1",
+        "SELECT * FROM `user_cred` WHERE `email` = ? OR `phonenum`=? Limit 1",
         [$data['email'], $data['phonenum']],
         'ss'
     );

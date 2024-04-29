@@ -8,7 +8,7 @@
 
 
 
-  <title>Metama Hotels - Room Details</title>
+  <title><?php echo $settings_r['site_title'] ?> - Room Details</title>
 
 
 </head>

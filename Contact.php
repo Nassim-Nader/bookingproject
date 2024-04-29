@@ -8,7 +8,7 @@
 
   
   
-  <title>Metama Hotels - Contact</title>
+  <title><?php echo $settings_r['site_title'] ?> - Contact</title>
 
 
 </head>
