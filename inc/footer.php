@@ -91,7 +91,7 @@
 
   let register_form = document.getElementById('register-form');
 
-  register_form.addEventListener('submit', (e) => {
+  register_form.addEventListener('submit', (e)=> {
     e.preventDefault();
 
     let data = new FormData();
@@ -143,6 +143,90 @@
     }
     xhr.send(data);
   });
+
+  let login_form = document.getElementById('login-form');
+
+  login_form.addEventListener('submit', (e)=> {
+    e.preventDefault();
+
+    let data = new FormData();
+
+    data.append('email_mob', login_form.elements['email_mob'].value);
+    data.append('pass', login_form.elements['pass'].value);
+
+    data.append('login', '');
+
+    var myModal = document.getElementById('loginModal');
+    var modal = bootstrap.Modal.getInstance(myModal);
+    modal.hide();
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "nas/login_register.php", true);
+
+    xhr.onload = function () {
+      if (this.responseText == 'inv_email_mob') {
+        alert('error',"Inavlid Email or Phone Number!");
+      }
+      else if (this.responseText == 'not_verified'){
+        alert('error',"Email is not verified!");
+      }
+      else if (this.responseText == 'inactive'){
+        alert('error',"Account suspended! please contact Admin.");
+      }
+      else if(this.responseText == 'inavlid_pass'){
+        alert('error',"Incorrect Password!");
+      }
+      else {
+        window.location =window.location.pathname;
+      }
+    }
+    xhr.send(data);
+  });
+
+  let forgot_form = document.getElementById('forgot-form');
+
+  forgot_form.addEventListener('submit', (e)=> {
+    e.preventDefault();
+
+    let data = new FormData();
+
+    data.append('email', forgot_form.elements['email'].value);
+
+    data.append('forgot_pass', '');
+
+    var myModal = document.getElementById('forgotModal');
+    var modal = bootstrap.Modal.getInstance(myModal);
+    modal.hide();
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "nas/login_register.php", true);
+
+    
+    xhr.onload = function () {
+      if (this.responseText == 'inv_email') {
+        alert('error',"Inavlid Email!");
+      }
+      else if (this.responseText == 'not_verified'){
+        alert('error',"Email is not verified! Contact Admin");
+      }
+      else if (this.responseText == 'inactive'){
+        alert('error',"Account suspended! please contact Admin.");
+      }
+      else if (this.responseText == 'mail_failed'){
+        alert('error',"Connot send email.Server Down");
+      }
+      else if (this.responseText == 'upd_failed'){
+        alert('error',"Account recovery failed.Server Down");
+      }
+      else {
+        alert('success',"Reset link sent to email!");
+        forgot_form.reset();
+      }
+    }
+    
+    xhr.send(data);
+  });
+
 
   setActive();
 </script>

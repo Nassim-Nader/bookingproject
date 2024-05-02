@@ -6,6 +6,7 @@ define('ABOUT_IMG_PATH', SITE_URL . 'images/about/');
 define('CAROUSEL_IMG_PATH', SITE_URL . 'images/carousel/');
 define('FACILITIES_IMG_PATH', SITE_URL . 'images/facilities/');
 define('ROOMS_IMG_PATH', SITE_URL . 'images/rooms/');
+define('USERS_IMG_PATH', SITE_URL . 'images/users/');
 
 
 //backend upload process needs this data
@@ -19,6 +20,8 @@ define('USERS_FOLDER', 'users/');
 //sendgrid api key
 
 define('SENDGRID_API_KEY', "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");
+define('SENDGRID_EMAIL', "nassim.nader@e-polytechnique.ma");
+define('SENDGRID_NAME', "Metama");
 
 
 function adminLogin()
