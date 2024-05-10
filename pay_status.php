@@ -48,7 +48,7 @@
         {
           echo <<<data
             <div class="col-12 px-4">
-              <p class='fw-bold alert alert-danger'>
+              <p class='fw-bold alert alert-success'>
                 <i class="bi bi-check-circle-fill"></i>
                 payment done! Booking successful.
                 <br><br>
@@ -61,7 +61,7 @@
         {
           echo <<<data
             <div class="col-12 px-4">
-              <p class='fw-bold alert alert-success'>
+              <p class='fw-bold alert alert-danger'>
                 <i class="bi bi-exclamation-triangle-fill"></i>
                 payment failed!$booking_fetch[trans_resp_msg]
                 <br><br>

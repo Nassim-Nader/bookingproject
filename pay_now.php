@@ -54,7 +54,7 @@ if (isset($_POST['pay_now'])) {
 
     insert($query1, [
         $CUST_ID, $_SESSION['room']['id'], $frm_data['checkin'],
-        $frm_data['checkin'], $ORDER_ID
+        $frm_data['checkout'], $ORDER_ID
     ], 'issss');
 
     $booking_id = mysqli_insert_id($con);
