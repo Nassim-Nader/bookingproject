@@ -30,6 +30,9 @@
                                     <li class="nav-item">
                                         <a class="nav-link text-white" href="refund_bookings.php">Refund Bookings</a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white" href="booking_records.php">Bookings Records</a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
