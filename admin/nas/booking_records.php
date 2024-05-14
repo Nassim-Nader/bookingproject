@@ -82,8 +82,8 @@ if (isset($_POST['get_bookings'])) {
                     <span class='badge $status_bg' >$data[booking_status]</span>
                 </td>
                 <td>
-                    <button type='button' onclick='cancel_booking($data[booking_id])' class='mt-2 btn btn-outline-danger btn-sm fw-bold  shadow-none' >
-                        <i class='bi bi-trash'></i>
+                    <button type='button' onclick='download_pdf($data[booking_id])' class='btn btn-success btn-sm fw-bold shadow-none'>
+                        <i class='bi bi-file-earmark-arrow-down-fill'></i>
                     </button>
                 </td>
             </tr>
@@ -131,34 +131,5 @@ if (isset($_POST['get_bookings'])) {
     echo $output;
 }
 
-
-
-
-if (isset($_POST['assign_room'])) {
-    $frm_data = filteration($_POST);
-
-    $query = "UPDATE `booking_order` bo INNER JOIN `booking_details` bd
-    ON bo.booking_id = bd.booking_id
-    SET bo.arrival=?, bd.room_no =?
-    WHERE bo.booking_id = ?";
-
-    $values = [1, $frm_data['room_no'], $frm_data['booking_id']];
-
-    $res = update($query, $values, 'isi'); //it will updare 2 rows so it will return 2
-
-    echo ($res == 2) ? 1 : 0;
-}
-
-
-if (isset($_POST['cancel_booking'])) {
-
-    $frm_data = filteration($_POST);
-
-    $query = "UPDATE `booking_order` SET `booking_status`=?, `refund` =? WHERE `booking_id` = ?";
-    $values = ['cancelled', 0, $frm_data['booking_id']];
-    $res = update($query, $values, 'sii');
-
-    echo $res;
-}
 
 ?>

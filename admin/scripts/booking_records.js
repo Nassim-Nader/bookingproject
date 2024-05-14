@@ -18,6 +18,9 @@ function change_page(page)
     get_bookings(document.getElementById('search_input').value,page);
 }
 
+function download_pdf(id){
+    window.location.href='generate_pdf?gen_pdf&id='+id;
+}
 
 window.onload = function () {
     get_bookings();
