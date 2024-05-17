@@ -88,7 +88,7 @@
                 </p>
                 <p>
                     <b>Amount:</b>$$data[price]<br>
-                    <b>Order ID:</b>$$data[order_id]<br>
+                    <b>Order ID:</b>$data[order_id]<br>
                     <b>Date:</b>$date
                 </p>
                 <p>

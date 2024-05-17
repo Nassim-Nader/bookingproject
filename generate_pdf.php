@@ -81,7 +81,7 @@
     {
         $table_data .= "
             <tr>
-                <td>Transaction Amount: $data[trans_amt]</td>
+                <td>Transaction Amount: $data[trans_amt] DH</td>
                 <td>Failure Response: $data[trans_resp_msg]</td>
             </tr>
         ";
@@ -90,7 +90,7 @@
         $table_data .= "
             <tr>
                 <td>Room Numebr: $data[room_no]</td>
-                <td>Amount Paid: $data[trans_amt]</td>
+                <td>Amount Paid: $data[trans_amt]DH</td>
             </tr>
         ";
     }
