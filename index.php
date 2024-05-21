@@ -147,6 +147,31 @@
         }
 
 
+        $rating_q ="SELECT AVG(rating) AS `avg_rating` FROM `rate_review`
+          WHERE `room_id`='$room_data[id]' ORDER BY `id` DESC LIMIT 20";
+
+        $rating_res = mysqli_query($con,$rating_q);
+        $rating_fetch = mysqli_fetch_assoc($rating_res);
+
+        $rating_data= "";
+
+        if($rating_fetch['avg_rating']!=NULL)
+        {
+          $rating_data="<div class='rating mb-4'>
+            <h6 class='mb-1'>Rating</h6>
+            <span class='badge rounded-pill bg-light'>
+            ";
+
+          for($i=0;$i<$rating_fetch['avg_rating'];$i++){
+            $rating_data .="<i class='bi bi-star-fill text-warning'></i> ";
+          }
+          $rating_data .="</span>
+            </div>";
+
+
+        }
+
+
         //print room card
       
         echo <<<data
@@ -173,16 +198,7 @@
                       $room_data[children] Children
                     </span>
                   </div>
-                  <div class="rating mb-4">
-                    <h6 class="mb-1">Rating</h6>
-                    <span class="badge rounded-pill bg-light">
-                      <i class="bi bi-star-fill text-warning"></i>
-                      <i class="bi bi-star-fill text-warning"></i>
-                      <i class="bi bi-star-fill text-warning"></i>
-                      <i class="bi bi-star-half text-warning"></i>
-                      <i class="bi bi-star text-warning"></i>
-                    </span>
-                  </div>
+                  $rating_data
                   <div class="d-flex justify-content-evenly mb-2">
                     $book_btn
                     <a href="room_details.php?id=$room_data[id]" class="btn btn-sm btn-outline-dark shadow-none">More Details</a>
@@ -226,82 +242,48 @@
   <div class="container mt-5">
     <div class="swiper swiper-reviews">
       <div class="swiper-wrapper mb-5">
+        <?php 
 
-        <div class="swiper-slide bg-white p-4">
-          <div class="profile d-flex align-items-center mb-3">
-            <img src="images/facilities/roomheater.svg" width="30px" />
-            <h6 class="m-0 ms-2">Random user1</h6>
-          </div>
-          <p>Ea labore consectetur occaecat exercitation.
-            Qui dolore eiusmod dolor laborum fugiat enim enim enim ullamco ut Lorem ea qui.
-            Incididunt aliqua tempor do qui occaecat laborum aliqua amet culpa sunt do ad quis velit.
-            Aliqua ut sunt occaecat fugiat cupidatat fugiat Lorem aute ad aute dolore labore elit.
-          </p>
-          <div class="rating">
-            <i class="bi bi-star-fill text-warning"></i>
-            <i class="bi bi-star-fill text-warning"></i>
-            <i class="bi bi-star-half text-warning"></i>
-            <i class="bi bi-star text-warning"></i>
-            <i class="bi bi-star text-warning"></i>
-          </div>
-        </div>
+          $review_q= "SELECT rr.*, uc.name AS uname,uc.profile, r.name AS rname FROM `rate_review`rr 
+            INNER JOIN `user_cred` uc ON rr.user_id = uc.id
+            INNER JOIN `rooms` r ON rr.room_id = r.id
+            ORDER BY `id` DESC LIMIT 6";
+            
+            $review_res= mysqli_query($con,$review_q);
+            $img_path= USERS_IMG_PATH;
 
-        <div class="swiper-slide bg-white p-4">
-          <div class="profile d-flex align-items-center mb-3">
-            <img src="images/facilities/roomheater.svg" width="30px" />
-            <h6 class="m-0 ms-2">Random user2</h6>
-          </div>
-          <p>Ea labore consectetur occaecat exercitation.
-            Qui dolore eiusmod dolor laborum fugiat enim enim enim ullamco ut Lorem ea qui.
-            Incididunt aliqua tempor do qui occaecat laborum aliqua amet culpa sunt do ad quis velit.
-            Aliqua ut sunt occaecat fugiat cupidatat fugiat Lorem aute ad aute dolore labore elit.
-          </p>
-          <div class="rating">
-            <i class="bi bi-star-fill text-warning"></i>
-            <i class="bi bi-star-fill text-warning"></i>
-            <i class="bi bi-star-fill text-warning"></i>
-            <i class="bi bi-star-fill text-warning"></i>
-            <i class="bi bi-star-half text-warning"></i>
-          </div>
-        </div>
+            if(mysqli_num_rows($review_res)==0){
+              echo 'No reviews yet!';
+            }
+            else
+            {
+              while($row = mysqli_fetch_assoc($review_res))
+              {
+                $stars= "<i class='bi bi-star-fill text-warning'></i>";
+                for($i=1; $i<$row['rating'];$i++){
+                  $stars .= "<i class='bi bi-star-fill text-warning'></i>";
+                }
 
-        <div class="swiper-slide bg-white p-4">
-          <div class="profile d-flex align-items-center mb-3">
-            <img src="images/facilities/roomheater.svg" width="30px" />
-            <h6 class="m-0 ms-2">Random user3</h6>
-          </div>
-          <p>Ea labore consectetur occaecat exercitation.
-            Qui dolore eiusmod dolor laborum fugiat enim enim enim ullamco ut Lorem ea qui.
-            Incididunt aliqua tempor do qui occaecat laborum aliqua amet culpa sunt do ad quis velit.
-            Aliqua ut sunt occaecat fugiat cupidatat fugiat Lorem aute ad aute dolore labore elit.
-          </p>
-          <div class="rating">
-            <i class="bi bi-star-fill text-warning"></i>
-            <i class="bi bi-star-fill text-warning"></i>
-            <i class="bi bi-star-fill text-warning"></i>
-            <i class="bi bi-star-fill text-warning"></i>
-            <i class="bi bi-star-fill text-warning"></i>
-          </div>
-        </div>
+                 echo <<<slides
+                  <div class="swiper-slide bg-white p-4">
+                    <div class="profile d-flex align-items-center mb-3">
+                      <img src="$img_path$row[profile]" class="rounded-circle" loading="lazy" width="30px" />
+                      <h6 class="m-0 ms-2">$row[uname]</h6>
+                    </div>
+                    <p>
+                      $row[review]
+                    </p>
+                    <div class="rating">
+                      $stars
+                    </div>
+                  </div>
 
-        <div class="swiper-slide bg-white p-4">
-          <div class="profile d-flex align-items-center mb-3">
-            <img src="images/facilities/roomheater.svg" width="30px" />
-            <h6 class="m-0 ms-2">Random user4</h6>
-          </div>
-          <p>Ea labore consectetur occaecat exercitation.
-            Qui dolore eiusmod dolor laborum fugiat enim enim enim ullamco ut Lorem ea qui.
-            Incididunt aliqua tempor do qui occaecat laborum aliqua amet culpa sunt do ad quis velit.
-            Aliqua ut sunt occaecat fugiat cupidatat fugiat Lorem aute ad aute dolore labore elit.
-          </p>
-          <div class="rating">
-            <i class="bi bi-star-fill text-warning"></i>
-            <i class="bi bi-star-half text-warning"></i>
-            <i class="bi bi-star text-warning"></i>
-            <i class="bi bi-star text-warning"></i>
-            <i class="bi bi-star text-warning"></i>
-          </div>
-        </div>
+                 slides;
+              }
+            }
+
+        ?>
+
       </div>
       <div class="swiper-pagination"></div>
     </div>

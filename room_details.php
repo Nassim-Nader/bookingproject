@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <?php require ('inc/links.php') ?>
+  <?php require('inc/links.php') ?>
 
 
 
@@ -15,7 +15,7 @@
 
 <body class="bg-light">
 
-  <?php require ('inc/header.php'); ?>
+  <?php require('inc/header.php'); ?>
 
   <?php
   if (!isset($_GET['id'])) {
@@ -94,13 +94,23 @@
                 <h4 >$room_data[price]DH per night</h4>
               price;
 
+            $rating_q = "SELECT AVG(rating) AS `avg_rating` FROM `rate_review`
+                WHERE `room_id`='$room_data[id]' ORDER BY `id` DESC LIMIT 20";
+
+            $rating_res = mysqli_query($con, $rating_q);
+            $rating_fetch = mysqli_fetch_assoc($rating_res);
+
+            $rating_data = "";
+
+            if ($rating_fetch['avg_rating'] != NULL) {
+              for ($i = 0; $i < $rating_fetch['avg_rating']; $i++) {
+                $rating_data .= "<i class='bi bi-star-fill text-warning'></i> ";
+              }
+            }
+
             echo <<<rating
                 <div class="mb-3">
-                  <i class="bi bi-star-fill text-warning"></i>
-                  <i class="bi bi-star-fill text-warning"></i>
-                  <i class="bi bi-star-fill text-warning"></i>
-                  <i class="bi bi-star-half text-warning"></i>
-                  <i class="bi bi-star text-warning"></i>
+                  $rating_data
                 </div>
               rating;
 
@@ -163,15 +173,15 @@
               </div>
             area;
 
-          
-            if(!$settings_r['shutdown']){
-              $login=0;
-            if(isset($_SESSION['login']) && $_SESSION['login']==true){
-              $login = 1;
-            }
+
+            if (!$settings_r['shutdown']) {
+              $login = 0;
+              if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
+                $login = 1;
+              }
               echo <<<book
                 <button onclick='checkLoginToBook($login,$room_data[id])' class="btn w-100 text-white custom-bg shadow-none mb-1">Book Now</button>
-              book;  
+              book;
             }
 
             ?>
@@ -192,31 +202,53 @@
 
         <div>
           <h5 class="mb-3">Reviews & Ratings</h5>
-          <div>
-            <div class="d-flex align-items-center mb-2">
-              <img src="images/facilities/roomheater.svg" width="30px" />
-              <h6 class="m-0 ms-2">Random user2</h6>
-            </div>
-            <p>Ea labore consectetur occaecat exercitation.
-              Qui dolore eiusmod dolor laborum fugiat enim enim enim ullamco ut Lorem ea qui.
-              Incididunt aliqua tempor do qui occaecat laborum aliqua amet culpa sunt do ad quis velit.
-              Aliqua ut sunt occaecat fugiat cupidatat fugiat Lorem aute ad aute dolore labore elit.
-            </p>
-            <div class="rating">
-              <i class="bi bi-star-fill text-warning"></i>
-              <i class="bi bi-star-fill text-warning"></i>
-              <i class="bi bi-star-fill text-warning"></i>
-              <i class="bi bi-star-fill text-warning"></i>
-              <i class="bi bi-star-half text-warning"></i>
-            </div>
-          </div>
+          <?php
+
+            $review_q = "SELECT rr.*, uc.name AS uname,uc.profile, r.name AS rname FROM `rate_review`rr 
+              INNER JOIN `user_cred` uc ON rr.user_id = uc.id
+              INNER JOIN `rooms` r ON rr.room_id = r.id
+              WHERE rr.room_id='$room_data[id]' 
+              ORDER BY `id` DESC LIMIT 15";
+
+            $review_res = mysqli_query($con, $review_q);
+            $img_path = USERS_IMG_PATH;
+
+            if (mysqli_num_rows($review_res) == 0) {
+              echo 'No reviews yet!';
+            } 
+            else {
+              while ($row = mysqli_fetch_assoc($review_res)) {
+                $stars = "<i class='bi bi-star-fill text-warning'></i>";
+                for ($i = 1; $i < $row['rating']; $i++) {
+                  $stars .= "<i class='bi bi-star-fill text-warning'></i>";
+                }
+
+                echo <<<reviews
+                  <div class="mb-4">
+                    <div class="d-flex align-items-center mb-2">
+                      <img src="$img_path$row[profile]" class="rounded-circle" loading="lazy" width="30px" />
+                      <h6 class="m-0 ms-2">$row[uname]</h6>
+                    </div>
+                    <p class="mb-1"> 
+                      $row[review]
+                    </p>
+                    <div>
+                      $stars
+                    </div>
+                  </div>
+                  reviews;
+              }
+            }
+
+          ?>
+
         </div>
       </div>
 
     </div>
   </div>
 
-  <?php require ('inc/footer.php'); ?>
+  <?php require('inc/footer.php'); ?>
 
 
 </body>
