@@ -98,7 +98,7 @@
                                         <th scope="col">Email</th>
                                         <th scope="col" width="20%" >Subject</th>
                                         <th scope="col" width="30%" >Message</th>
-                                        <th scope="col">Date and time</th>
+                                        <th scope="col">Date</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -110,6 +110,7 @@
 
                                         while($row = mysqli_fetch_assoc($data))
                                         {
+                                            $date= date('d-m-Y',strtotime($row['datentime']));
                                             $seen='';
                                             if($row['seen']!=1){
                                                 $seen = "<a href='?seen=$row[id]' class='btn btn-sm rounded-pill btn-primary' >Mark as read</a> <br>";
@@ -122,7 +123,7 @@
                                                     <td>$row[email]</td>
                                                     <td>$row[subject]</td>
                                                     <td>$row[message]</td>
-                                                    <td>$row[date]</td>
+                                                    <td>$date</td>
                                                     <td>$seen</td>
                                                 </tr>
                                             query;
