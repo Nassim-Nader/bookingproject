@@ -493,7 +493,7 @@
           alert('error', "Account reset failed.Server Down");
         }
         else {
-          alert('success', "ACccount Reset successful!");
+          alert('success', "Account Reset successful!");
           recovery_form.reset();
         }
       }

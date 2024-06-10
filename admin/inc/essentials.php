@@ -19,10 +19,9 @@ define('USERS_FOLDER', 'users/');
 
 //sendgrid api key
 
-define('SENDGRID_API_KEY', "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");
+define('SENDGRID_API_KEY', "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");
 define('SENDGRID_EMAIL', "nassim.nader@e-polytechnique.ma");
 define('SENDGRID_NAME', "Metama");
-
 
 function adminLogin()
 {
@@ -35,7 +34,6 @@ function adminLogin()
     }
 }
 
-
 function redirect($url)
 {
     echo "<script>
@@ -43,7 +41,6 @@ function redirect($url)
         </script>";
     exit;
 }
-
 
 function alert($type, $msg)
 {
@@ -56,7 +53,6 @@ function alert($type, $msg)
             </div>
         alert;
 }
-
 
 function uploadImage($image, $folder)
 {
@@ -87,7 +83,6 @@ function deleteImage($image, $folder)
     } else {
         return false;
     }
-
 }
 
 function uploadSVGImage($image, $folder)
@@ -125,6 +120,11 @@ function uploadUserImage($image)
 
         $img_path = UPLOAD_IMAGE_PATH . USERS_FOLDER . $rname;
 
+        // Check if the directory exists, if not create it
+        if (!is_dir(UPLOAD_IMAGE_PATH . USERS_FOLDER)) {
+            mkdir(UPLOAD_IMAGE_PATH . USERS_FOLDER, 0755, true);
+        }
+
         if ($ext == 'png' || $ext == 'PNG') {
             $img = imagecreatefrompng($image['tmp_name']);
         } else if ($ext == 'webp' || $ext == 'WEBP') {
@@ -133,7 +133,6 @@ function uploadUserImage($image)
             $img = imagecreatefromjpeg($image['tmp_name']);
         }
 
-
         if (imagejpeg($img, $img_path, 75)) {
             return $rname;
         } else {
@@ -141,6 +140,4 @@ function uploadUserImage($image)
         }
     }
 }
-
-
 ?>

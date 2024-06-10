@@ -1,5 +1,5 @@
 <!-- Footer-->
-<div class="container-fluid bg-white mt-5">
+<div class="container-fluid mt-5" style="background-color: var(--teal);">
   <div class="row">
     <div class="col-lg-4">
       <h3 class="h-font fw-bold fs-3 mb-2"><?php echo $settings_r['site_title'] ?></h3>
