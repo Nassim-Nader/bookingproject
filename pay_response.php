@@ -1,16 +1,17 @@
 <?php
-
+require 'inc/vendor/autoload.php';
 require('admin/inc/db_config.php');
 require('admin/inc/essentials.php');
 
-//note to self change paytm to paypal later it stopped working for some reason
-require('inc/paytm/config_paytm.php');
-require('inc/paytm/encdec_paytm.php');
+$config = require('admin/inc/config_paypal.php');
+
+use PayPalCheckoutSdk\Core\PayPalHttpClient;
+use PayPalCheckoutSdk\Core\SandboxEnvironment;
+use PayPalCheckoutSdk\Orders\OrdersCaptureRequest;
 
 date_default_timezone_set("Africa/Casablanca");
 
 session_start();
-unset($_SESSION['room']);
 
 function regenrate_session($uid)
 {
@@ -24,29 +25,48 @@ function regenrate_session($uid)
     $_SESSION['uPhone'] = $user_fetch['phonenum'];
 }
 
+if (isset($_GET['success']) && $_GET['success'] == 'true') {
+    $orderId = $_GET['order_id'];
 
+    $environment = new SandboxEnvironment($config['client_id'], $config['secret']);
+    $client = new PayPalHttpClient($environment);
 
-header("Pragma: no-cache");
-header("Cache-Control: no-cache");
-header("Expires: 0");
+    $request = new OrdersCaptureRequest($_GET['token']);
+    $request->prefer('return=representation');
 
-$paytmChecksum = "";
-$paramList = array();
+    try {
+        $response = $client->execute($request);
 
-$isValidChecksum = "FALSE";
+        $order_id = $_GET['order_id'];
+        $slct_query = "SELECT `booking_id`,`user_id` FROM `booking_order` WHERE `order_id`=?";
+        $slct_res = select($slct_query, [$order_id], 's');
 
-$paramList = $_POST;
-$paytmChecksum = isset($_POST["CHECKSUMHASH"]) ? $_POST["CHECKSUMHASH"] : ""; //Sent by Paytm pg
+        if (mysqli_num_rows($slct_res) == 0) {
+            redirect('index.php');
+        }
 
-$isValidChecksum = verifychecksum_e($paramList, PAYTM_MERCHANT_KEY, $paytmChecksum); //will return TRUE or FALSE string.
+        $slct_fetch = mysqli_fetch_assoc($slct_res);
 
+        if (!(isset($_SESSION['login']) && $_SESSION['login'] == true)) {
+            regenrate_session($slct_fetch['user_id']);
+        }
 
+        $upd_query = "UPDATE `booking_order` SET `booking_status`='booked',
+            `trans_id`=?, `trans_amt`=?, `trans_status`='TXN_SUCCESS', `trans_resp_msg`='Payment completed'
+            WHERE `booking_id`=?";
+        update($upd_query, [
+            $response->result->id, $response->result->purchase_units[0]->payments->captures[0]->amount->value, $slct_fetch['booking_id']
+        ], 'ssi');
 
-if ($isValidChecksum == "TRUE") {
-
-    $slct_query = "SELECT `booking_id`,`user_id` FROM `booking_order`
-            WHERE `order_id`='$_POST[ORDERID]'";
-    $slct_res = mysqli_query($con, $slct_query);
+        redirect('pay_status.php?order=' . $order_id);
+    } catch (Exception $ex) {
+        echo 'Exception: ' . $ex->getMessage();
+        exit;
+    }
+} else {
+    $order_id = $_GET['order_id'];
+    $slct_query = "SELECT `booking_id` FROM `booking_order` WHERE `order_id`=?";
+    $slct_res = select($slct_query, [$order_id], 's');
 
     if (mysqli_num_rows($slct_res) == 0) {
         redirect('index.php');
@@ -54,27 +74,11 @@ if ($isValidChecksum == "TRUE") {
 
     $slct_fetch = mysqli_fetch_assoc($slct_res);
 
-    if (!(isset($_SESSION['login']) && $_SESSION['login'] == true)) {
-        regenrate_session($slct_fetch['user_id']);
-    }
+    $upd_query = "UPDATE `booking_order` SET `booking_status`='payment failed',
+        `trans_status`='TXN_FAILED', `trans_resp_msg`='Payment failed'
+        WHERE `booking_id`=?";
+    update($upd_query, [$slct_fetch['booking_id']], 'i');
 
-
-    if ($_POST["STATUS"] == "TXN_SUCCESS") {
-        $upd_query = "UPDATE `booking_order` SET `bookibg_status`='booked',
-          `trans_id`='$_POST[TXNID]',`trans_amt`='$_POST[TXNAMOUNT]',
-          `trans_status`='$_POST[STATUS]',`trans_resp_msg`='$_POST[RESPMSG]'
-           WHERE `booking_id`='$slct_fetch[booking_id]'";
-
-        mysqli_query($con, $upd_query);
-    } else {
-        $upd_query = "UPDATE `booking_order` SET `bookibg_status`='payment failed',
-        `trans_id`='$_POST[TXNID]',`trans_amt`='$_POST[TXNAMOUNT]',
-        `trans_status`='$_POST[STATUS]',`trans_resp_msg`='$_POST[RESPMSG]'
-         WHERE `booking_id`='$slct_fetch[booking_id]'";
-
-        mysqli_query($con, $upd_query);
-    }
-    redirect('pay_status.php?order=' . $_POST['ORDERID']);
-} else {
-    redirect('index.php');
+    redirect('pay_status.php?order=' . $order_id);
 }
+?>

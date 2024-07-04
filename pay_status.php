@@ -6,17 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <?php require('inc/links.php') ?>
 
-
-
   <title><?php echo $settings_r['site_title'] ?> - BOOKING STATUS</title>
-
-
 </head>
 
 <body class="bg-light">
 
   <?php require('inc/header.php'); ?>
-
 
   <div class="container">
     <div class="row">
@@ -25,7 +20,6 @@
       </div>
 
       <?php 
-
         $frm_data = filteration($_GET);
 
         if(!(isset($_SESSION['login']) && $_SESSION['login']==true)){
@@ -57,29 +51,26 @@
             </div>
           data;
         }
-        else 
+        else
         {
           echo <<<data
             <div class="col-12 px-4">
               <p class='fw-bold alert alert-danger'>
                 <i class="bi bi-exclamation-triangle-fill"></i>
-                payment failed!$booking_fetch[trans_resp_msg]
+                Payment failed! $booking_fetch[trans_resp_msg]
                 <br><br>
-                <a href='bookings.php'>Go to bookings</a>
+                <a href='index.php'>Go to Home</a>
               </p>
             </div>
           data;
         }
-
-
       ?>
-
+      
     </div>
   </div>
 
+
   <?php require('inc/footer.php'); ?>
-
-
 </body>
 
 </html>
