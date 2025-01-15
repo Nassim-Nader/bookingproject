@@ -1,5 +1,4 @@
 This project is a hotel reservation website developed for my PFE. It allows users to book rooms, check availability, and manage reservations. The database provided is empty, allowing users to add their own data as needed. However, I’ve included some sample images in a folder named images that can be used if required.
-[Uploading metama_booking.sql…]()
 
 ![Screenshot 2024-04-16 164926](https://github.com/user-attachments/assets/1b2f581d-996f-419b-8e58-1fa0ca2de474)
 ![Screenshot 2024-05-24 181643](https://github.com/user-attachments/assets/32982093-8995-428c-ac69-571107cb4991)
